@@ -1,0 +1,72 @@
+{
+  "name": "fms-odata-mcp",
+  "version": "0.1.0",
+  "description": "Model Context Protocol (MCP) server providing FileMaker Server OData 4.01 API integration with database introspection for AI agents. Compatible with Claude, Windsurf, Cursor, Cline, and other MCP-enabled assistants.",
+  "type": "module",
+  "main": "dist/index.js",
+  "bin": {
+    "fms-odata-mcp": "dist/bin/cli.js"
+  },
+  "files": [
+    "dist",
+    "README.md",
+    "LICENSE"
+  ],
+  "scripts": {
+    "build": "tsc",
+    "start": "node dist/index.js",
+    "dev": "tsc && node dist/index.js",
+    "watch": "tsc --watch",
+    "test": "node --experimental-vm-modules node_modules/jest/bin/jest.js",
+    "test:watch": "node --experimental-vm-modules node_modules/jest/bin/jest.js --watch",
+    "test:coverage": "node --experimental-vm-modules node_modules/jest/bin/jest.js --coverage",
+    "prepublishOnly": "npm run build"
+  },
+  "keywords": [
+    "mcp",
+    "model-context-protocol",
+    "filemaker",
+    "filemaker-server",
+    "odata",
+    "odata-4",
+    "rest-api",
+    "ai",
+    "claude",
+    "chatgpt",
+    "windsurf",
+    "cursor",
+    "cline",
+    "llm"
+  ],
+  "author": "Francesc Sans <fsans@ntwk.es>",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/fsans/FMS-ODATA-MCP.git"
+  },
+  "bugs": {
+    "url": "https://github.com/fsans/FMS-ODATA-MCP/issues"
+  },
+  "homepage": "https://github.com/fsans/FMS-ODATA-MCP#readme",
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.0.4",
+    "axios": "^1.7.9",
+    "commander": "^12.1.0",
+    "debug": "^4.4.3",
+    "dotenv": "^16.4.7",
+    "express": "^4.18.2"
+  },
+  "devDependencies": {
+    "@jest/globals": "^30.2.0",
+    "@types/debug": "^4.1.12",
+    "@types/express": "^4.17.21",
+    "@types/jest": "^30.0.0",
+    "@types/node": "^22.10.5",
+    "jest": "^30.2.0",
+    "ts-jest": "^29.4.5",
+    "typescript": "^5.7.3"
+  }
+}
