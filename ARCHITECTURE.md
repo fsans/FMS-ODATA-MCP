@@ -64,7 +64,7 @@
 **Configuration:**
 ```typescript
 {
-  name: 'filemaker-odata-server',
+  name: 'fms-odata-mcp',
   version: '1.0.0',
   capabilities: {
     resources: {},

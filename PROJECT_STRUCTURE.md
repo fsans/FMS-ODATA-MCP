@@ -3,7 +3,7 @@
 ## Directory Structure
 
 ```
-filemaker-odata-mcp/
+FMS-ODATA-MCP/
 ├── src/
 │   ├── index.ts                      # Main entry point, server initialization
 │   ├── server.ts                     # FileMakerODataServer class
@@ -440,13 +440,13 @@ export class Cache {
 ### `package.json`
 ```json
 {
-  "name": "filemaker-odata-mcp",
+  "name": "fms-odata-mcp",
   "version": "1.0.0",
   "description": "MCP server for FileMaker Server OData API",
   "type": "module",
   "main": "build/index.js",
   "bin": {
-    "filemaker-odata-mcp": "./build/index.js"
+    "fms-odata-mcp": "./build/index.js"
   },
   "scripts": {
     "build": "tsc && chmod +x build/index.js",
@@ -537,8 +537,8 @@ coverage/
 ```bash
 # Create project directory
 cd /Users/fsans/Documents/Cline/MCP
-npx @modelcontextprotocol/create-server filemaker-odata-mcp
-cd filemaker-odata-mcp
+npx @modelcontextprotocol/create-server FMS-ODATA-MCP
+cd FMS-ODATA-MCP
 
 # Install dependencies
 npm install axios
