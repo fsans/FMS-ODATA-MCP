@@ -5,9 +5,14 @@
  */
 
 import { Server } from "@modelcontextprotocol/sdk/server/index.js";
+import {
+  CallToolRequestSchema,
+  ListToolsRequestSchema,
+} from "@modelcontextprotocol/sdk/types.js";
 import { setupTransport, getTransportConfig } from "./transport.js";
 import { getConfig } from "./config.js";
 import { logger } from "./logger.js";
+import { allTools, handleToolCall } from "./tools/index.js";
 
 /**
  * Main server class
@@ -46,8 +51,39 @@ class FileMakerODataServer {
   }
 
   private setupToolHandlers(): void {
-    // Tool handlers will be implemented in subsequent phases
-    logger.info("Tool handlers setup placeholder");
+    // List available tools
+    this.server.setRequestHandler(ListToolsRequestSchema, async () => {
+      logger.debug("Listing tools");
+      return {
+        tools: allTools,
+      };
+    });
+
+    // Handle tool calls
+    this.server.setRequestHandler(CallToolRequestSchema, async (request) => {
+      logger.debug(`Tool called: ${request.params.name}`);
+      
+      try {
+        const result = await handleToolCall(
+          request.params.name,
+          request.params.arguments
+        );
+        return result;
+      } catch (error: any) {
+        logger.error(`Tool execution error:`, error);
+        return {
+          content: [
+            {
+              type: "text",
+              text: `Error executing tool: ${error.message}`,
+            },
+          ],
+          isError: true,
+        };
+      }
+    });
+
+    logger.info(`Registered ${allTools.length} tools`);
   }
 
   async run(): Promise<void> {
